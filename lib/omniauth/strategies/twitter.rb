@@ -1,10 +1,13 @@
-require 'omniauth-oauth2'
+require 'omniauth-oauth'
 require 'multi_json'
 
 module OmniAuth
   module Strategies
-    class Twitter < OmniAuth::Strategies::OAuth2
+    class Twitter < OmniAuth::Strategies::OAuth
+      option :name, 'twitter'
       option :client_options, {:site => 'https://api.twitter.com'}
+      option :sign_in, true
+      option :force_sign_in, false
 
       def initialize(*args)
         super
@@ -12,10 +15,6 @@ module OmniAuth
         options.authorize_params[:force_sign_in] = 'true' if options.force_sign_in?
       end
 
-      def request_phase
-        super
-      end
-      
       uid { access_token.params[:user_id] }
 
       info do
@@ -44,4 +43,3 @@ module OmniAuth
     end
   end
 end
-OmniAuth.config.add_camelization 'twitter', 'Twitter'
