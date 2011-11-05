@@ -6,14 +6,6 @@ module OmniAuth
     class Twitter < OmniAuth::Strategies::OAuth
       option :name, 'twitter'
       option :client_options, {:site => 'https://api.twitter.com'}
-      option :sign_in, true
-      option :force_sign_in, false
-
-      def initialize(*args)
-        super
-        options.client_options[:authorize_path] = '/oauth/authenticate' if options.sign_in?
-        options.authorize_params[:force_sign_in] = 'true' if options.force_sign_in?
-      end
 
       uid { access_token.params[:user_id] }
 
