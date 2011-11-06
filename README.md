@@ -6,15 +6,13 @@ Twitter uses the OAuth 1.0a flow, you can read about it here: https://dev.twitte
 
 ## How To Use It
 
-Usage is as per any other OmniAuth 1.0 strategy. So let's say you're using Rails, you need to add the strategy to your `Gemfile` along side omniauth:
+Usage is as per any other OmniAuth 1.0 strategy. So let's say you're using Rails, you need to add the strategy to your `Gemfile`:
 
-    gem 'omniauth'
     gem 'omniauth-twitter'
 
 You can pull them in directly from github e.g.:
 
-    gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
-    gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitetr.git'
+    gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
 
 Once these are in, you need to add the following to your `config/initializers/omniauth.rb`:
 
