@@ -22,6 +22,12 @@ Once these are in, you need to add the following to your `config/initializers/om
 
 You will obviously have to put in your key and secret, which you get when you register your app with Twitter (they call them API Key and Secret Key). 
 
+Twitter also optionally supports specifying a username when authenticating. This is handy when your application supports multiple twitter accounts since you can prompt the user to login to the correct account (and not defaulting to the current login). 
+
+To use this, just add a querystring for screen_name. 
+
+	/auth/twitter?screen_name=scottw
+
 Now just follow the README at: https://github.com/intridea/omniauth
 
 ## Supported Rubies
