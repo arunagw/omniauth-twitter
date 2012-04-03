@@ -45,7 +45,6 @@ module OmniAuth
         old_request_phase
       end
 
-
     end
   end
 end
