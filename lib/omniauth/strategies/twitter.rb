@@ -4,6 +4,7 @@ require 'multi_json'
 module OmniAuth
   module Strategies
     class Twitter < OmniAuth::Strategies::OAuth
+      
       option :name, 'twitter'
       option :client_options, {:authorize_path => '/oauth/authenticate',
                                :site => 'https://api.twitter.com'}
@@ -44,7 +45,6 @@ module OmniAuth
         end
         old_request_phase
       end
-
 
     end
   end
