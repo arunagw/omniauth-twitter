@@ -37,7 +37,7 @@ module OmniAuth
       alias :old_request_phase :request_phase
 
       def request_phase 
-        screen_name = session['omniauth.params']['screen_name']
+        screen_name = session['omniauth.params'] ? session['omniauth.params']['screen_name'] : nil
         if screen_name && !screen_name.empty?
           options[:authorize_params] ||= {}
           options[:authorize_params].merge!(:force_login => 'true', :screen_name => screen_name)
