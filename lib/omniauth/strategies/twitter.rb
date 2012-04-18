@@ -29,14 +29,14 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.decode(access_token.get('/1/account/verify_credentials.json').body)
+        @raw_info ||= MultiJson.load(access_token.get('/1/account/verify_credentials.json').body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
 
       alias :old_request_phase :request_phase
 
-      def request_phase 
+      def request_phase
         screen_name = session['omniauth.params'] ? session['omniauth.params']['screen_name'] : nil
         if screen_name && !screen_name.empty?
           options[:authorize_params] ||= {}
