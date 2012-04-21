@@ -38,9 +38,14 @@ module OmniAuth
 
       def request_phase
         screen_name = session['omniauth.params'] ? session['omniauth.params']['screen_name'] : nil
+        x_auth_access_type = session['omniauth.params'] ? session['omniauth.params']['x_auth_access_type'] : nil
         if screen_name && !screen_name.empty?
           options[:authorize_params] ||= {}
           options[:authorize_params].merge!(:force_login => 'true', :screen_name => screen_name)
+        end
+        if x_auth_access_type
+          options[:request_params] || {}
+          options[:request_params].merge!(:x_auth_access_type => x_auth_access_type)
         end
         old_request_phase
       end
