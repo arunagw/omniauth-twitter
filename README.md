@@ -28,6 +28,13 @@ To use this, just add a querystring for screen_name.
 
 	/auth/twitter?screen_name=scottw
 
+Twitter also optionally supports specifying a x_auth_access_type when authenticating. This is handy when you need to specify special permission in some cases.
+
+To use this, just add a querystring for x_auth_access_type. 
+
+	/auth/twitter?x_auth_access_type=read	
+
+
 Now just follow the README at: https://github.com/intridea/omniauth
 
 ## Supported Rubies
