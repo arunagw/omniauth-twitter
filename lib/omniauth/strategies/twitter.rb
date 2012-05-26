@@ -47,6 +47,13 @@ module OmniAuth
           options[:request_params] || {}
           options[:request_params].merge!(:x_auth_access_type => x_auth_access_type)
         end
+
+        if session['omniauth.params'] && session['omniauth.params']["use_authorize"] == "true"
+          options.client_options.authorize_path = '/oauth/authorize'
+        else
+          options.client_options.authorize_path = '/oauth/authenticate'
+        end
+        
         old_request_phase
       end
 
