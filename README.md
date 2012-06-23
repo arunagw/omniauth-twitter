@@ -28,6 +28,10 @@ To use this, just add a querystring for screen_name.
 
 	/auth/twitter?screen_name=scottw
 
+You can also specify ```force_login``` without specifying the screen_name to prompt the user to choose the twitter account they wish to use.
+
+    /auth/twitter?force_login=true
+
 Twitter also optionally supports specifying a x_auth_access_type when authenticating. This is handy when you need to specify special permission in some cases.
 
 To use this, just add a querystring for x_auth_access_type. 
