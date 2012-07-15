@@ -41,6 +41,13 @@ To use this, just add a querystring for x_auth_access_type.
 
 Now just follow the README at: https://github.com/intridea/omniauth
 
+## Watch the RailsCast
+
+Ryan Bates has put together an excellent RailsCast on OmniAuth:
+
+[![RailsCast #241](https://www.evernote.com/shard/s35/sh/479f2503-aefa-4542-a7b4-8f84fd22eafc/0571f5a3795a0be3d0b0814312a8d5b7/res/49b5478a-657c-4aff-ae58-dae08b9a46d5/Screen_Shot_2012-07-15_at_12.41.15_PM-20120715-125424.jpg.jpg "RailsCast #241 - Simple OmniAuth (revised)")](http://railscasts.com/episodes/241-simple-omniauth-revised)
+
+
 ## Supported Rubies
 
 OmniAuth Twitter is tested under 1.8.7, 1.9.2, 1.9.3 and Ruby Enterprise Edition.
