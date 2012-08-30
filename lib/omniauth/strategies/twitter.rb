@@ -6,7 +6,8 @@ module OmniAuth
     class Twitter < OmniAuth::Strategies::OAuth
       option :name, 'twitter'
       option :client_options, {:authorize_path => '/oauth/authenticate',
-                               :site => 'https://api.twitter.com'}
+                               :site => 'https://api.twitter.com',
+										 :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil}
 
       uid { access_token.params[:user_id] }
 
