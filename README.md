@@ -2,51 +2,49 @@
 
 This gem contains the Twitter strategy for OmniAuth.
 
-Twitter uses the OAuth 1.0a flow, you can read about it here: https://dev.twitter.com/docs/auth/oauth
+Twitter offers a few different methods of integration. What we are using here is the "3-legged authorization" method as described [here](https://dev.twitter.com/docs/auth/3-legged-authorization). Behind the scenes, we are using OAuth 1.0a to talk to Twitter. You can get the gory details about how Twitter uses OAuth [here](https://dev.twitter.com/docs/auth/oauth).
 
-## How To Use It
+## Before you begin
 
-Usage is as per any other OmniAuth 1.0 strategy. So let's say you're using Rails, you need to add the strategy to your `Gemfile`:
+If you have not already done so, sign in into the [Twitter developer area](http://dev.twitter.com) and create an application. Take note of your Consumer Key and Consumer Secret (not the Access Token and Secret) because that is what your web application will use to authenticate against the Twitter API.
+
+Also, we assume you've already installed OmniAuth in your app; if not, read the [OmniAuth README](https://github.com/intridea/omniauth) to get started.
+
+## Using this Strategy
+
+First start by adding this gem to your Gemfile:
 
     gem 'omniauth-twitter'
 
-You can pull them in directly from github e.g.:
+If you need to use the latest HEAD version, you can do so with:
 
-    gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
+    gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
 
-Once these are in, you need to add the following to your `config/initializers/omniauth.rb`:
+Next, tell OmniAuth about this provider. For a Rails app, your `config/initializers/omniauth.rb` file should look like this:
 
     Rails.application.config.middleware.use OmniAuth::Builder do
-      provider :twitter, "consumer_key", "consumer_secret" 
+      provider :twitter, "CONSUMER_KEY", "CONSUMER_SECRET" 
     end
 
-You will obviously have to put in your key and secret, which you get when you register your app with Twitter (they call them API Key and Secret Key). 
+Replace CONSUMER_KEY and CONSUMER_SECRET with the appropriate values you obtained from dev.twitter.com earlier.
 
-Twitter also optionally supports specifying a username when authenticating. This is handy when your application supports multiple twitter accounts since you can prompt the user to login to the correct account (and not defaulting to the current login). 
+## Authentication Options
 
-To use this, just add a querystring for screen_name. 
+Twitter supports a [few options](https://dev.twitter.com/docs/api/1/get/oauth/authenticate) when authenticating. Usually you would specify these options as query parameters to the Twitter API authentication url (https://api.twitter.com/oauth/authenticate by default). With OmniAuth, of course, you use `http://yourapp.com/auth/twitter` instead. Because of this, this OmniAuth provider will pick up the query parameters you pass to the `/auth/twitter` URL and re-use them when making the call to the Twitter API. 
 
-	/auth/twitter?screen_name=scottw
+The options are:
 
-You can also specify ```force_login``` without specifying the screen_name to prompt the user to choose the twitter account they wish to use.
+* **force_login** - This option sends the user to a sign-in screen to enter their Twitter credentials, even if they are already signed in. This is handy when your application supports multiple Twitter accounts and you want to ensure the correct user is signed in. *Example:* `http://yoursite.com/auth/twitter?force_login=true`
 
-    /auth/twitter?force_login=true
+* **screen_name** - This option implies **force_login**, except the screen name field is pre-filled with a particular value. *Example:* `http://yoursite.com/auth/twitter?screen_name=jim`
 
-Twitter also optionally supports specifying a x_auth_access_type when authenticating. This is handy when you need to specify special permission in some cases.
-
-To use this, just add a querystring for x_auth_access_type. 
-
-	/auth/twitter?x_auth_access_type=read	
-
-
-Now just follow the README at: https://github.com/intridea/omniauth
+* **x_auth_access_type** - This option (described [here](https://dev.twitter.com/docs/api/1/post/oauth/request_token)) lets you request the level of access that your app will have to the Twitter account in question. *Example:* `http://yoursite.com/auth/twitter?x_auth_access_type=read`
 
 ## Watch the RailsCast
 
 Ryan Bates has put together an excellent RailsCast on OmniAuth:
 
 [![RailsCast #241](https://www.evernote.com/shard/s35/sh/479f2503-aefa-4542-a7b4-8f84fd22eafc/0571f5a3795a0be3d0b0814312a8d5b7/res/49b5478a-657c-4aff-ae58-dae08b9a46d5/Screen_Shot_2012-07-15_at_12.41.15_PM-20120715-125424.jpg "RailsCast #241 - Simple OmniAuth (revised)")](http://railscasts.com/episodes/241-simple-omniauth-revised)
-
 
 ## Supported Rubies
 
