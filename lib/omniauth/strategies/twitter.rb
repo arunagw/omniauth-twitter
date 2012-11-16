@@ -30,7 +30,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.load(access_token.get('/1/account/verify_credentials.json').body)
+        @raw_info ||= MultiJson.load(access_token.get('/1.1/account/verify_credentials.json').body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
@@ -59,7 +59,7 @@ module OmniAuth
         else
           options.client_options.authorize_path = '/oauth/authenticate'
         end
-        
+
         old_request_phase
       end
 
