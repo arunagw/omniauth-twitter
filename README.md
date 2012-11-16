@@ -25,14 +25,14 @@ If you need to use the latest HEAD version, you can do so with:
 Next, tell OmniAuth about this provider. For a Rails app, your `config/initializers/omniauth.rb` file should look like this:
 
     Rails.application.config.middleware.use OmniAuth::Builder do
-      provider :twitter, "CONSUMER_KEY", "CONSUMER_SECRET" 
+      provider :twitter, "CONSUMER_KEY", "CONSUMER_SECRET"
     end
 
 Replace CONSUMER_KEY and CONSUMER_SECRET with the appropriate values you obtained from dev.twitter.com earlier.
 
 ## Authentication Options
 
-Twitter supports a [few options](https://dev.twitter.com/docs/api/1/get/oauth/authenticate) when authenticating. Usually you would specify these options as query parameters to the Twitter API authentication url (`https://api.twitter.com/oauth/authenticate` by default). With OmniAuth, of course, you use `http://yourapp.com/auth/twitter` instead. Because of this, this OmniAuth provider will pick up the query parameters you pass to the `/auth/twitter` URL and re-use them when making the call to the Twitter API. 
+Twitter supports a [few options](https://dev.twitter.com/docs/api/1/get/oauth/authenticate) when authenticating. Usually you would specify these options as query parameters to the Twitter API authentication url (`https://api.twitter.com/oauth/authenticate` by default). With OmniAuth, of course, you use `http://yourapp.com/auth/twitter` instead. Because of this, this OmniAuth provider will pick up the query parameters you pass to the `/auth/twitter` URL and re-use them when making the call to the Twitter API.
 
 The options are:
 

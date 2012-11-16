@@ -59,7 +59,7 @@ module OmniAuth
         else
           options.client_options.authorize_path = '/oauth/authenticate'
         end
-        
+
         old_request_phase
       end
 
