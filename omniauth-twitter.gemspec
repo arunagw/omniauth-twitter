@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/arunagw/omniauth-twitter"
   s.summary     = %q{OmniAuth strategy for Twitter}
   s.description = %q{OmniAuth strategy for Twitter}
+  s.license     = "MIT"
 
   s.rubyforge_project = "omniauth-twitter"
 
