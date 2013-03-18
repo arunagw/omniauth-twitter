@@ -50,7 +50,7 @@ module OmniAuth
           options[:authorize_params].merge!(:force_login => 'true', :screen_name => screen_name)
         end
         if x_auth_access_type
-          options[:request_params] || {}
+          options[:request_params] ||= {}
           options[:request_params].merge!(:x_auth_access_type => x_auth_access_type)
         end
 
