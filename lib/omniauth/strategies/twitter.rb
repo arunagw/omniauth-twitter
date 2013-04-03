@@ -20,7 +20,7 @@ module OmniAuth
           :description => raw_info['description'],
           :urls => {
             'Website' => raw_info['url'],
-            'Twitter' => "http://twitter.com/#{raw_info['screen_name']}",
+            'Twitter' => "https://twitter.com/#{raw_info['screen_name']}",
           }
         }
       end
