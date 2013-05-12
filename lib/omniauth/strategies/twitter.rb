@@ -47,7 +47,7 @@ module OmniAuth
         end
         if screen_name && !screen_name.empty?
           options[:authorize_params] ||= {}
-          options[:authorize_params].merge!(:force_login => 'true', :screen_name => screen_name)
+          options[:authorize_params].merge!(:screen_name => screen_name)
         end
         if x_auth_access_type
           options[:request_params] ||= {}
