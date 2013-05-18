@@ -42,13 +42,13 @@ The options are:
 
 * **x_auth_access_type** - This option (described [here](https://dev.twitter.com/docs/api/1/post/oauth/request_token)) lets you request the level of access that your app will have to the Twitter account in question. *Example:* `http://yoursite.com/auth/twitter?x_auth_access_type=read`
 
-* **use_authorize** - There are actually two URLs you can use against the Twitter API. As mentioned, the default is `https://api.twitter.com/oauth/authenticate`, but you also have `https://api.twitter.com/oauth/authorize`. Passing this option as `true` will use the second URL rather than the first. What's the difference? As described [here](https://dev.twitter.com/docs/api/1/get/oauth/authenticate), with `authenticate`, if your user has already granted permission to your application, Twitter will redirect straight back to your application, whereas `authorize` forces the user to go through the "grant permission" screen again. For certain use cases this may be necessary. *Example:* `http://yoursite.com/auth/twitter?use_authorize=true`. *Note:* You must have "Allow this application to be used to Sign in with Twitter" checked in ![your application's settings](https://dev.twitter.com/apps) - without it your user will be asked to authorize your application each time they log in.
+* **use_authorize** - There are actually two URLs you can use against the Twitter API. As mentioned, the default is `https://api.twitter.com/oauth/authenticate`, but you also have `https://api.twitter.com/oauth/authorize`. Passing this option as `true` will use the second URL rather than the first. What's the difference? As described [here](https://dev.twitter.com/docs/api/1/get/oauth/authenticate), with `authenticate`, if your user has already granted permission to your application, Twitter will redirect straight back to your application, whereas `authorize` forces the user to go through the "grant permission" screen again. For certain use cases this may be necessary. *Example:* `http://yoursite.com/auth/twitter?use_authorize=true`. *Note:* You must have "Allow this application to be used to Sign in with Twitter" checked in [your application's settings](https://dev.twitter.com/apps) - without it your user will be asked to authorize your application each time they log in.
 
 ## Watch the RailsCast
 
 Ryan Bates has put together an excellent RailsCast on OmniAuth:
 
-[![RailsCast #241](https://www.evernote.com/shard/s35/sh/479f2503-aefa-4542-a7b4-8f84fd22eafc/0571f5a3795a0be3d0b0814312a8d5b7/res/49b5478a-657c-4aff-ae58-dae08b9a46d5/Screen_Shot_2012-07-15_at_12.41.15_PM-20120715-125424.jpg "RailsCast #241 - Simple OmniAuth (revised)")](http://railscasts.com/episodes/241-simple-omniauth-revised)
+[![RailsCast #241](http://railscasts.com/static/episodes/stills/241-simple-omniauth-revised.png "RailsCast #241 - Simple OmniAuth (revised)")](http://railscasts.com/episodes/241-simple-omniauth-revised)
 
 ## Supported Rubies
 
