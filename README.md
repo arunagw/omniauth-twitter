@@ -16,17 +16,23 @@ Now sign in into the [Twitter developer area](http://dev.twitter.com) and create
 
 First start by adding this gem to your Gemfile:
 
-    gem 'omniauth-twitter'
+```ruby
+gem 'omniauth-twitter'
+```
 
 If you need to use the latest HEAD version, you can do so with:
 
-    gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+```ruby
+gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+```
 
 Next, tell OmniAuth about this provider. For a Rails app, your `config/initializers/omniauth.rb` file should look like this:
 
-    Rails.application.config.middleware.use OmniAuth::Builder do
-      provider :twitter, "CONSUMER_KEY", "CONSUMER_SECRET"
-    end
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :twitter, "CONSUMER_KEY", "CONSUMER_SECRET"
+end
+```
 
 Replace CONSUMER_KEY and CONSUMER_SECRET with the appropriate values you obtained from dev.twitter.com earlier.
 
