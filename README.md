@@ -44,6 +44,8 @@ The options are:
 
 * **force_login** - This option sends the user to a sign-in screen to enter their Twitter credentials, even if they are already signed in. This is handy when your application supports multiple Twitter accounts and you want to ensure the correct user is signed in. *Example:* `http://yoursite.com/auth/twitter?force_login=true`
 
+* **secure_image_url** - Set to true to use https for the avatar image url returned in the auth hash. Default is false. 
+
 * **screen_name** - This option implies **force_login**, except the screen name field is pre-filled with a particular value. *Example:* `http://yoursite.com/auth/twitter?screen_name=jim`
 
 * **x_auth_access_type** - This option (described [here](https://dev.twitter.com/docs/api/1/post/oauth/request_token)) lets you request the level of access that your app will have to the Twitter account in question. *Example:* `http://yoursite.com/auth/twitter?x_auth_access_type=read`
