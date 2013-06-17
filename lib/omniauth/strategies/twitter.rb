@@ -17,6 +17,7 @@ module OmniAuth
           :name => raw_info['name'],
           :location => raw_info['location'],
           :image => options[:secure_image_url] ? raw_info['profile_image_url_https'] : raw_info['profile_image_url'],
+          :default_image => raw_info['default_profile_image'],
           :description => raw_info['description'],
           :urls => {
             'Website' => raw_info['url'],
