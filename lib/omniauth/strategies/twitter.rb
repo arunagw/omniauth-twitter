@@ -16,7 +16,7 @@ module OmniAuth
           :nickname => raw_info['screen_name'],
           :name => raw_info['name'],
           :location => raw_info['location'],
-          :image => options[:secure_image_url] ? raw_info['profile_image_url_https'] : raw_info['profile_image_url'],
+          :image => image_url(options),
           :description => raw_info['description'],
           :urls => {
             'Website' => raw_info['url'],
@@ -61,6 +61,22 @@ module OmniAuth
         end
 
         old_request_phase
+      end
+
+      private
+
+      def image_url(options)
+        original_url = options[:secure_image_url] ? raw_info['profile_image_url_https'] : raw_info['profile_image_url']
+        case options[:image_size]
+        when 'mini'
+          original_url.sub('normal', 'mini')
+        when 'bigger'
+          original_url.sub('normal', 'bigger')
+        when 'original'
+          original_url.sub('_normal', '')
+        else
+          original_url
+        end
       end
 
     end
