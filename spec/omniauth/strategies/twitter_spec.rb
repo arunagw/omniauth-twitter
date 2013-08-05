@@ -1,9 +1,15 @@
 require 'spec_helper'
 
 describe OmniAuth::Strategies::Twitter do
+  let(:request) { double('Request', :params => {}, :cookies => {}, :env => {}) }
+
   subject do
     args = ['appid', 'secret', @options || {}].compact
-    OmniAuth::Strategies::Twitter.new(*args)
+    OmniAuth::Strategies::Twitter.new(*args).tap do |strategy|
+      strategy.stub(:request) {
+        request
+      }
+    end
   end
 
   describe 'client options' do
@@ -50,9 +56,9 @@ describe OmniAuth::Strategies::Twitter do
   describe 'request_phase' do
     context 'with no request params set and x_auth_access_type specified' do
       before do
-        subject.options[:request_params] = nil
-        subject.stub(:session).and_return(
-          {'omniauth.params' => {'x_auth_access_type' => 'read'}})
+        subject.stub(:request).and_return(
+          double('Request', {:params => {'x_auth_access_type' => 'read'}})
+        )
         subject.stub(:old_request_phase).and_return(:whatever)
       end
 
