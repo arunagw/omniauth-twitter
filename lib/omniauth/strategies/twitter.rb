@@ -39,7 +39,7 @@ module OmniAuth
       alias :old_request_phase :request_phase
 
       def request_phase
-        %w[force_login screen_name].each do |v|
+        %w[force_login lang screen_name].each do |v|
           if request.params[v]
             options[:authorize_params][v.to_sym] = request.params[v]
           end
