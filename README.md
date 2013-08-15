@@ -80,8 +80,8 @@ An example auth hash available in `request.env['omniauth.auth']`:
     :access_token => "", # An OAuth::AccessToken object
     :raw_info => {
       :name => "John Q Public",
-      :listed_count" => 0,
-      :profile_sidebar_border_color" => "181A1E",
+      :listed_count => 0,
+      :profile_sidebar_border_color => "181A1E",
       :url => nil,
       :lang => "en",
       :statuses_count => 129,
