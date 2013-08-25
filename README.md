@@ -46,6 +46,8 @@ The options are:
 
 * **screen_name** - This option implies **force_login**, except the screen name field is pre-filled with a particular value. *Example:* `http://yoursite.com/auth/twitter?screen_name=jim`
 
+* **lang** - The language used in the Twitter prompt. This is useful for adding i18n support since the language of the prompt can be dynamically set for each user. *Example:* `http://yoursite.com/auth/twitter?lang=pt`
+
 * **secure_image_url** - Set to `true` to use https for the user's image url. Default is `false`.
 
 * **image_size**: This option defines the size of the user's image. Valid options include `mini` (24x24), `normal` (48x48), `bigger` (73x73) and `original` (the size of the image originally uploaded). Default is `normal`.
@@ -53,6 +55,22 @@ The options are:
 * **x_auth_access_type** - This option (described [here](https://dev.twitter.com/docs/api/1/post/oauth/request_token)) lets you request the level of access that your app will have to the Twitter account in question. *Example:* `http://yoursite.com/auth/twitter?x_auth_access_type=read`
 
 * **use_authorize** - There are actually two URLs you can use against the Twitter API. As mentioned, the default is `https://api.twitter.com/oauth/authenticate`, but you also have `https://api.twitter.com/oauth/authorize`. Passing this option as `true` will use the second URL rather than the first. What's the difference? As described [here](https://dev.twitter.com/docs/api/1/get/oauth/authenticate), with `authenticate`, if your user has already granted permission to your application, Twitter will redirect straight back to your application, whereas `authorize` forces the user to go through the "grant permission" screen again. For certain use cases this may be necessary. *Example:* `http://yoursite.com/auth/twitter?use_authorize=true`. *Note:* You must have "Allow this application to be used to Sign in with Twitter" checked in [your application's settings](https://dev.twitter.com/apps) - without it your user will be asked to authorize your application each time they log in.
+
+Here's an example of a possible configuration where the the user's original profile picture is returned over https, the user is always prompted to sign-in and the default language of the Twitter prompt is changed:
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"],
+    {
+      :secure_image_url => 'true',
+      :image_size => 'original',
+      :authorize_params => {
+        :force_login => 'true',
+        :lang => 'pt'
+      }
+    }
+end
+```
 
 ## Authentication Hash
 An example auth hash available in `request.env['omniauth.auth']`:
