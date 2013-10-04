@@ -5,6 +5,7 @@ module OmniAuth
   module Strategies
     class Twitter < OmniAuth::Strategies::OAuth
       option :name, 'twitter'
+
       option :client_options, {:authorize_path => '/oauth/authenticate',
                                :site => 'https://api.twitter.com',
                                :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil}
@@ -16,7 +17,7 @@ module OmniAuth
           :nickname => raw_info['screen_name'],
           :name => raw_info['name'],
           :location => raw_info['location'],
-          :image => image_url(options),
+          :image => image_url,
           :description => raw_info['description'],
           :urls => {
             'Website' => raw_info['url'],
@@ -38,26 +39,22 @@ module OmniAuth
       alias :old_request_phase :request_phase
 
       def request_phase
-        force_login = session['omniauth.params'] ? session['omniauth.params']['force_login'] : nil
-        screen_name = session['omniauth.params'] ? session['omniauth.params']['screen_name'] : nil
-        x_auth_access_type = session['omniauth.params'] ? session['omniauth.params']['x_auth_access_type'] : nil
-        if force_login && !force_login.empty?
-          options[:authorize_params] ||= {}
-          options[:authorize_params].merge!(:force_login => 'true')
-        end
-        if screen_name && !screen_name.empty?
-          options[:authorize_params] ||= {}
-          options[:authorize_params].merge!(:screen_name => screen_name)
-        end
-        if x_auth_access_type
-          options[:request_params] ||= {}
-          options[:request_params].merge!(:x_auth_access_type => x_auth_access_type)
+        %w[force_login lang screen_name].each do |v|
+          if request.params[v]
+            options[:authorize_params][v.to_sym] = request.params[v]
+          end
         end
 
-        if session['omniauth.params'] && session['omniauth.params']["use_authorize"] == "true"
-          options.client_options.authorize_path = '/oauth/authorize'
+        %w[x_auth_access_type].each do |v|
+          if request.params[v]
+            options[:request_params][v.to_sym] = request.params[v]
+          end
+        end
+
+        if request.params['use_authorize'] == 'true'
+          options[:client_options][:authorize_path] = '/oauth/authorize'
         else
-          options.client_options.authorize_path = '/oauth/authenticate'
+          options[:client_options][:authorize_path] = '/oauth/authenticate'
         end
 
         old_request_phase
@@ -65,7 +62,7 @@ module OmniAuth
 
       private
 
-      def image_url(options)
+      def image_url
         original_url = options[:secure_image_url] ? raw_info['profile_image_url_https'] : raw_info['profile_image_url']
         case options[:image_size]
         when 'mini'
