@@ -152,7 +152,7 @@ Ryan Bates has put together an excellent RailsCast on OmniAuth:
 
 ## Supported Rubies
 
-OmniAuth Twitter is tested under 1.8.7, 1.9.2, 1.9.3 and Ruby Enterprise Edition.
+OmniAuth Twitter is tested under 1.8.7, 1.9.2, 1.9.3, 2.0.0, and Ruby Enterprise Edition.
 
 [![CI Build
 Status](https://secure.travis-ci.org/arunagw/omniauth-twitter.png)](http://travis-ci.org/arunagw/omniauth-twitter)
