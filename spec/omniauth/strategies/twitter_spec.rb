@@ -66,5 +66,20 @@ describe OmniAuth::Strategies::Twitter do
         expect { subject.request_phase }.not_to raise_error
       end
     end
+
+    context "with no request params set and use_authorize options provided" do
+      before do
+        @options = { :use_authorize => true }
+        subject.stub(:request).and_return(
+          double('Request', {:params => {}})
+        )
+        subject.stub(:old_request_phase).and_return(:whatever)
+      end
+
+      it "should switch authorize_path from authenticate to authorize" do
+        expect { subject.request_phase }.to change { subject.options.client_options.authorize_path }
+                .from('/oauth/authenticate').to('/oauth/authorize')
+      end
+    end
   end
 end
