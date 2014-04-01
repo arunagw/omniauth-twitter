@@ -77,8 +77,7 @@ describe OmniAuth::Strategies::Twitter do
       end
 
       it "should switch authorize_path from authenticate to authorize" do
-        expect { subject.request_phase }.to change { subject.options.client_options.authorize_path }
-                .from('/oauth/authenticate').to('/oauth/authorize')
+        expect { subject.request_phase }.to change { subject.options.client_options.authorize_path }.from('/oauth/authenticate').to('/oauth/authorize')
       end
     end
   end
