@@ -6,7 +6,7 @@ describe OmniAuth::Strategies::Twitter do
   subject do
     args = ['appid', 'secret', @options || {}].compact
     OmniAuth::Strategies::Twitter.new(*args).tap do |strategy|
-      strategy.stub(:request) {
+      allow(strategy).to receive(:request) {
         request
       }
     end
@@ -30,7 +30,7 @@ describe OmniAuth::Strategies::Twitter do
     context 'when user has an image' do
       it 'should return image with size specified' do
         @options = { :image_size => 'original' }
-        subject.stub(:raw_info).and_return(
+        allow(subject).to receive(:raw_info).and_return(
           { 'profile_image_url' => 'http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_normal.png' }
         )
         expect(subject.info[:image]).to eq('http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0.png')
@@ -38,14 +38,14 @@ describe OmniAuth::Strategies::Twitter do
 
       it 'should return secure image with size specified' do
         @options = { :secure_image_url => 'true', :image_size => 'mini' }
-        subject.stub(:raw_info).and_return(
+        allow(subject).to receive(:raw_info).and_return(
           { 'profile_image_url_https' => 'https://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_normal.png' }
         )
         expect(subject.info[:image]).to eq('https://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_mini.png')
       end
 
       it 'should return normal image by default' do
-        subject.stub(:raw_info).and_return(
+        allow(subject).to receive(:raw_info).and_return(
           { 'profile_image_url' => 'http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_normal.png' }
         )
         expect(subject.info[:image]).to eq('http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_normal.png')
@@ -56,10 +56,10 @@ describe OmniAuth::Strategies::Twitter do
   describe 'request_phase' do
     context 'with no request params set and x_auth_access_type specified' do
       before do
-        subject.stub(:request).and_return(
+        allow(subject).to receive(:request).and_return(
           double('Request', {:params => {'x_auth_access_type' => 'read'}})
         )
-        subject.stub(:old_request_phase).and_return(:whatever)
+        allow(subject).to receive(:old_request_phase).and_return(:whatever)
       end
 
       it 'should not break' do
