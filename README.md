@@ -1,5 +1,9 @@
 # OmniAuth Twitter
 
+[![Gem Version](https://badge.fury.io/rb/omniauth-twitter.svg)](http://badge.fury.io/rb/omniauth-twitter)
+[![CI Build Status](https://secure.travis-ci.org/arunagw/omniauth-twitter.svg?branch=master)](http://travis-ci.org/arunagw/omniauth-twitter)
+[![Code Climate](https://codeclimate.com/github/arunagw/omniauth-twitter.png)](https://codeclimate.com/github/arunagw/omniauth-twitter)
+
 This gem contains the Twitter strategy for OmniAuth.
 
 Twitter offers a few different methods of integration. This strategy implements the browser variant of the "[Sign in with Twitter](https://dev.twitter.com/docs/auth/implementing-sign-twitter)" flow.
@@ -153,9 +157,6 @@ Ryan Bates has put together an excellent RailsCast on OmniAuth:
 ## Supported Rubies
 
 OmniAuth Twitter is tested under 1.8.7, 1.9.2, 1.9.3 and Ruby Enterprise Edition.
-
-[![CI Build
-Status](https://secure.travis-ci.org/arunagw/omniauth-twitter.png)](http://travis-ci.org/arunagw/omniauth-twitter)
 
 ## Contributing
 
