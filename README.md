@@ -1,16 +1,20 @@
 # OmniAuth Twitter
 
+[![Gem Version](https://badge.fury.io/rb/omniauth-twitter.svg)](http://badge.fury.io/rb/omniauth-twitter)
+[![CI Build Status](https://secure.travis-ci.org/arunagw/omniauth-twitter.svg?branch=master)](http://travis-ci.org/arunagw/omniauth-twitter)
+[![Code Climate](https://codeclimate.com/github/arunagw/omniauth-twitter.png)](https://codeclimate.com/github/arunagw/omniauth-twitter)
+
 This gem contains the Twitter strategy for OmniAuth.
 
 Twitter offers a few different methods of integration. This strategy implements the browser variant of the "[Sign in with Twitter](https://dev.twitter.com/docs/auth/implementing-sign-twitter)" flow.
 
-Twitter uses OAuth 1.0a. Twitter's developer area contains ample documentation on how it implements this, so if you are really interested in the details, go check that out for more.
+Twitter uses OAuth 1.0a. Twitter's developer area contains ample documentation on how it implements this, so check that out if you are really interested in the details.
 
 ## Before You Begin
 
 You should have already installed OmniAuth into your app; if not, read the [OmniAuth README](https://github.com/intridea/omniauth) to get started.
 
-Now sign in into the [Twitter developer area](http://dev.twitter.com) and create an application. Take note of your Consumer Key and Consumer Secret (not the Access Token and Secret) because that is what your web application will use to authenticate against the Twitter API. Make sure to set a callback URL or else you may get authentication errors. (It doesn't matter what it is, just that it is set.)
+Now sign in into the [Twitter developer area](https://dev.twitter.com) and create an application. Take note of your API Key and API Secret (not the Access Token and Access Token Secret) because that is what your web application will use to authenticate against the Twitter API. Make sure to set a callback URL or else you may get authentication errors. (It doesn't matter what it is, just that it is set.)
 
 ## Using This Strategy
 
@@ -30,11 +34,11 @@ Next, tell OmniAuth about this provider. For a Rails app, your `config/initializ
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twitter, "CONSUMER_KEY", "CONSUMER_SECRET"
+  provider :twitter, "API_KEY", "API_SECRET"
 end
 ```
 
-Replace CONSUMER_KEY and CONSUMER_SECRET with the appropriate values you obtained from dev.twitter.com earlier.
+Replace `"API_KEY"` and `"API_SECRET"` with the appropriate values you obtained [earlier](https://apps.twitter.com).
 
 ## Authentication Options
 
@@ -60,7 +64,7 @@ Here's an example of a possible configuration where the the user's original prof
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"],
+  provider :twitter, "API_KEY", "API_SECRET",
     {
       :secure_image_url => 'true',
       :image_size => 'original',
@@ -154,16 +158,9 @@ Ryan Bates has put together an excellent RailsCast on OmniAuth:
 
 OmniAuth Twitter is tested under 1.8.7, 1.9.2, 1.9.3, 2.0.0, and Ruby Enterprise Edition.
 
-[![CI Build
-Status](https://secure.travis-ci.org/arunagw/omniauth-twitter.png)](http://travis-ci.org/arunagw/omniauth-twitter)
+## Contributing
 
-## Note on Patches/Pull Requests
-
-- Fork the project.
-- Make your feature addition or bug fix.
-- Add tests for it. This is important so I don’t break it in a future version unintentionally.
-- Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-- Send me a pull request. Bonus points for topic branches.
+Please read the [contribution guidelines](CONTRIBUTING.md) for some information on how to get started. No contribution is too small.
 
 ## License
 
