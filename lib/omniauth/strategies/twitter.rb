@@ -72,7 +72,7 @@ module OmniAuth
         when 'original'
           original_url.sub('_normal', '')
         when '400x400'
-          original_url.sub('400x400', '400x400')
+          original_url.sub('normal', '400x400')
         else
           original_url
         end
