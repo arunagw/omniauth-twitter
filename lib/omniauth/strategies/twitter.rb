@@ -51,7 +51,7 @@ module OmniAuth
           end
         end
 
-        if request.params['use_authorize'] == 'true'
+        if (options[:use_authorize] && options[:use_authorize] != false) || request.params['use_authorize'] == 'true'
           options[:client_options][:authorize_path] = '/oauth/authorize'
         else
           options[:client_options][:authorize_path] = '/oauth/authenticate'
