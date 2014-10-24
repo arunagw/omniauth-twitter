@@ -53,6 +53,16 @@ describe OmniAuth::Strategies::Twitter do
     end
   end
 
+  describe 'skip_info option' do
+    context 'when skip info option is enabled' do
+      it 'should not include raw_info in extras hash' do
+        @options = { :skip_info => true }
+        allow(subject).to receive(:raw_info).and_return({:foo => 'bar'})
+        expect(subject.extra[:raw_info]).to eq(nil)
+      end
+    end
+  end
+
   describe 'request_phase' do
     context 'with no request params set and x_auth_access_type specified' do
       before do
