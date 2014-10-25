@@ -14,7 +14,7 @@ Twitter uses OAuth 1.0a. Twitter's developer area contains ample documentation o
 
 You should have already installed OmniAuth into your app; if not, read the [OmniAuth README](https://github.com/intridea/omniauth) to get started.
 
-Now sign in into the [Twitter developer area](https://dev.twitter.com) and create an application. Take note of your API Key and API Secret (not the Access Token and Access Token Secret) because that is what your web application will use to authenticate against the Twitter API. Make sure to set a callback URL or else you may get authentication errors. (It doesn't matter what it is, just that it is set.)
+Now sign in into the [Twitter developer area](https://dev.twitter.com/apps) and create an application. Take note of your API Key and API Secret (not the Access Token and Access Token Secret) because that is what your web application will use to authenticate against the Twitter API. Make sure to set a callback URL or else you may get authentication errors. (It doesn't matter what it is, just that it is set.)
 
 ## Using This Strategy
 
