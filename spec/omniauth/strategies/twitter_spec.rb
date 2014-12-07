@@ -36,6 +36,14 @@ describe OmniAuth::Strategies::Twitter do
         expect(subject.info[:image]).to eq('http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0.png')
       end
 
+      it 'should return bigger image when bigger size specified' do
+        @options = { :image_size => 'bigger' }
+        allow(subject).to receive(:raw_info).and_return(
+          { 'profile_image_url' => 'http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_normal.png' }
+        )
+        expect(subject.info[:image]).to eq('http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_bigger.png')
+      end
+
       it 'should return secure image with size specified' do
         @options = { :secure_image_url => 'true', :image_size => 'mini' }
         allow(subject).to receive(:raw_info).and_return(
