@@ -90,5 +90,18 @@ describe OmniAuth::Strategies::Twitter do
         expect { subject.request_phase }.to change { subject.options.client_options.authorize_path }.from('/oauth/authenticate').to('/oauth/authorize')
       end
     end
+
+    context "with no request params set and force_login specified" do
+      before do
+        allow(subject).to receive(:request) do
+          double('Request', {:params => { 'force_login' => true } })
+        end
+        allow(subject).to receive(:old_request_phase) { :whatever }
+      end
+
+      it "should change add force_login=true to authorize_params" do
+        expect { subject.request_phase }.to change {subject.options.authorize_params.force_login}.from(nil).to(true)
+      end
+    end
   end
 end
