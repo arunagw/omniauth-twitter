@@ -80,10 +80,10 @@ describe OmniAuth::Strategies::Twitter do
     context "with no request params set and use_authorize options provided" do
       before do
         @options = { :use_authorize => true }
-        subject.stub(:request).and_return(
-          double('Request', {:params => {}})
-        )
-        subject.stub(:old_request_phase).and_return(:whatever)
+        allow(subject).to receive(:request) do
+          double('Request', {:params => {} })
+        end
+        allow(subject).to receive(:old_request_phase) { :whatever }
       end
 
       it "should switch authorize_path from authenticate to authorize" do
