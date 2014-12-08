@@ -36,6 +36,14 @@ describe OmniAuth::Strategies::Twitter do
         expect(subject.info[:image]).to eq('http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0.png')
       end
 
+      it 'should return bigger image when bigger size specified' do
+        @options = { :image_size => 'bigger' }
+        allow(subject).to receive(:raw_info).and_return(
+          { 'profile_image_url' => 'http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_normal.png' }
+        )
+        expect(subject.info[:image]).to eq('http://twimg0-a.akamaihd.net/sticky/default_profile_images/default_profile_0_bigger.png')
+      end
+
       it 'should return secure image with size specified' do
         @options = { :secure_image_url => 'true', :image_size => 'mini' }
         allow(subject).to receive(:raw_info).and_return(
@@ -88,6 +96,19 @@ describe OmniAuth::Strategies::Twitter do
 
       it "should switch authorize_path from authenticate to authorize" do
         expect { subject.request_phase }.to change { subject.options.client_options.authorize_path }.from('/oauth/authenticate').to('/oauth/authorize')
+      end
+    end
+
+    context "with no request params set and force_login specified" do
+      before do
+        allow(subject).to receive(:request) do
+          double('Request', {:params => { 'force_login' => true } })
+        end
+        allow(subject).to receive(:old_request_phase) { :whatever }
+      end
+
+      it "should change add force_login=true to authorize_params" do
+        expect { subject.request_phase }.to change {subject.options.authorize_params.force_login}.from(nil).to(true)
       end
     end
   end
