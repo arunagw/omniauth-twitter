@@ -1,5 +1,5 @@
 require 'omniauth-oauth'
-require 'multi_json'
+require 'json'
 
 module OmniAuth
   module Strategies
@@ -31,7 +31,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.load(access_token.get('/1.1/account/verify_credentials.json?include_entities=false&skip_status=true').body)
+        @raw_info ||= JSON.load(access_token.get('/1.1/account/verify_credentials.json?include_entities=false&skip_status=true').body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
