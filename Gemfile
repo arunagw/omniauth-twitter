@@ -1,5 +1,12 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
+
+gemspec
 
 gem 'rake'
-# Specify your gem's dependencies in omniauth-twitter.gemspec
-gemspec
+
+group :test do
+  gem 'rspec', '~> 3.2'
+  gem 'rack-test'
+  gem 'simplecov'
+  gem 'webmock'
+end
