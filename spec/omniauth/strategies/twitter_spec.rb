@@ -26,6 +26,37 @@ describe OmniAuth::Strategies::Twitter do
     end
   end
 
+  describe 'info' do
+    before do
+      allow(subject).to receive(:raw_info).and_return(raw_info_hash)
+    end
+
+    it 'should returns the nickname' do
+      expect(subject.info[:nickname]).to eq(raw_info_hash['screen_name'])
+    end
+
+    it 'should returns the name' do
+      expect(subject.info[:name]).to eq(raw_info_hash['name'])
+    end
+
+    it 'should returns the email' do
+      expect(subject.info[:email]).to eq(raw_info_hash['email'])
+    end
+
+    it 'should returns the location' do
+      expect(subject.info[:location]).to eq(raw_info_hash['location'])
+    end
+
+    it 'should returns the description' do
+      expect(subject.info[:description]).to eq(raw_info_hash['description'])
+    end
+
+    it 'should returns the urls' do
+      expect(subject.info[:urls]['Website']).to eq(raw_info_hash['url'])
+      expect(subject.info[:urls]['Twitter']).to eq("https://twitter.com/#{raw_info_hash['screen_name']}")
+    end
+  end
+
   describe 'image_size option' do
     context 'when user has an image' do
       it 'should return image with size specified' do
@@ -112,4 +143,17 @@ describe OmniAuth::Strategies::Twitter do
       end
     end
   end
+end
+
+private
+
+def raw_info_hash
+  {
+    'screen_name' => 'foo',
+    'name' => 'Foo Bar',
+    'email' => 'foo@example.com',
+    'location' => 'India',
+    'description' => 'Developer',
+    'url' => 'example.com/foobar'
+  }
 end

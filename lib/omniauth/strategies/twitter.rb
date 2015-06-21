@@ -16,6 +16,7 @@ module OmniAuth
         {
           :nickname => raw_info['screen_name'],
           :name => raw_info['name'],
+          :email => raw_info["email"],
           :location => raw_info['location'],
           :image => image_url,
           :description => raw_info['description'],
@@ -31,7 +32,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= JSON.load(access_token.get('/1.1/account/verify_credentials.json?include_entities=false&skip_status=true').body)
+        @raw_info ||= JSON.load(access_token.get('/1.1/account/verify_credentials.json?include_entities=false&skip_status=true&include_email=true').body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
