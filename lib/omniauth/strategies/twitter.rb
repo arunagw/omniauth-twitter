@@ -65,7 +65,10 @@ module OmniAuth
 
       def image_url
         original_url = options[:secure_image_url] ? raw_info['profile_image_url_https'] : raw_info['profile_image_url']
-        case options[:image_size]
+        ## Allowing :image_size to specify as Symbol
+        # Converting :image_size to String if :image_size is non String
+        image_size = options[:image_size].is_a?(String) ? options[:image_size] : options[:image_size].to_s
+        case image_size
         when 'mini'
           original_url.sub('normal', 'mini')
         when 'bigger'
