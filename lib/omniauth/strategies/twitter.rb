@@ -6,9 +6,11 @@ module OmniAuth
     class Twitter < OmniAuth::Strategies::OAuth
       option :name, 'twitter'
 
-      option :client_options, {:authorize_path => '/oauth/authenticate',
-                               :site => 'https://api.twitter.com',
-                               :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil}
+      option :client_options, {
+        :authorize_path => '/oauth/authenticate',
+        :site => 'https://api.twitter.com',
+        :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil
+      }
 
       uid { access_token.params[:user_id] }
 
@@ -22,7 +24,7 @@ module OmniAuth
           :description => raw_info['description'],
           :urls => {
             'Website' => raw_info['url'],
-            'Twitter' => "https://twitter.com/#{raw_info['screen_name']}",
+            'Twitter' => "https://twitter.com/#{raw_info['screen_name']}"
           }
         }
       end
@@ -40,13 +42,13 @@ module OmniAuth
       alias :old_request_phase :request_phase
 
       def request_phase
-        %w[force_login lang screen_name].each do |v|
+        %w(force_login lang screen_name).each do |v|
           if request.params[v]
             options[:authorize_params][v.to_sym] = request.params[v]
           end
         end
 
-        %w[x_auth_access_type].each do |v|
+        %w(x_auth_access_type).each do |v|
           if request.params[v]
             options[:request_params][v.to_sym] = request.params[v]
           end
@@ -76,7 +78,6 @@ module OmniAuth
           original_url
         end
       end
-
     end
   end
 end
