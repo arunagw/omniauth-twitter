@@ -61,6 +61,10 @@ module OmniAuth
         old_request_phase
       end
 
+      def callback_url
+        request.params['callback_url'] || super
+      end
+
       private
 
       def image_url
