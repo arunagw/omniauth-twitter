@@ -62,7 +62,17 @@ module OmniAuth
       end
 
       def callback_url
-        request.params['callback_url'] || super
+        request.params['callback_url']
+      end
+
+      def callback_path
+        params = session['omniauth.params']
+
+        if params.nil? || params['callback_url'].nil?
+          super
+        else
+          URI(params['callback_url']).path
+        end
       end
 
       private
