@@ -84,7 +84,7 @@ An example auth hash available in `request.env['omniauth.auth']`:
   :provider => "twitter",
   :uid => "123456",
   :info => {
-    :nickname => "johnqpublic",
+    :nickname => "johnqpublic", # screen name
     :name => "John Q Public",
     :location => "Anytown, USA",
     :image => "http://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png",
@@ -117,7 +117,7 @@ An example auth hash available in `request.env['omniauth.auth']`:
       :profile_sidebar_fill_color => "666666",
       :followers_count => 1,
       :default_profile_image => false,
-      :screen_name => "",
+      :screen_name => "johnqpublic",
       :following => false,
       :utc_offset => -3600,
       :verified => false,
