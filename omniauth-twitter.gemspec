@@ -18,5 +18,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new('>= 1.9.3')
   s.add_dependency 'omniauth-oauth', '~> 1.1'
+  s.add_dependency 'rack', '~> 1.6'
   s.add_development_dependency 'bundler', '~> 1.0'
 end
