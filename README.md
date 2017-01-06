@@ -156,7 +156,9 @@ Ryan Bates has put together an excellent RailsCast on OmniAuth:
 
 ## Supported Rubies
 
-OmniAuth Twitter is tested under 1.9.3, 2.0.0, 2.1.x, 2.2.x, JRuby, and Rubinius.
+OmniAuth Twitter is tested under 2.1.x, 2.2.x, JRuby, and Rubinius.
+
+If you use its gem on ruby 1.9.x or 2.0.x, use version v1.2.1 .
 
 ## Contributing
 
