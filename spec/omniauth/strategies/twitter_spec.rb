@@ -130,6 +130,47 @@ describe OmniAuth::Strategies::Twitter do
       end
     end
 
+    context 'with a specified callback_url in the params' do
+      before do
+        params = { 'callback_url' => 'http://foo.dev/auth/twitter/foobar' }
+        allow(subject).to receive(:request) do
+          double('Request', :params => params)
+        end
+        allow(subject).to receive(:session) do
+          double('Session', :[] => { 'callback_url' => params['callback_url'] })
+        end
+        allow(subject).to receive(:old_request_phase) { :whatever }
+      end
+
+      it 'should use the callback_url' do
+        expect(subject.callback_url).to eq 'http://foo.dev/auth/twitter/foobar'
+      end
+
+      it 'should return the correct callback_path' do
+        expect(subject.callback_path).to eq '/auth/twitter/foobar'
+      end
+    end
+
+    context 'with no callback_url set' do
+      before do
+        allow(subject).to receive(:request) do
+          double('Request', :params => {})
+        end
+        allow(subject).to receive(:session) do
+          double('Session', :[] => {})
+        end
+        allow(subject).to receive(:old_request_phase) { :whatever }
+      end
+
+      it 'callback_url should return nil' do
+        expect(subject.callback_url).to be_nil
+      end
+
+      it 'should return the default callback_path value' do
+        expect(subject.callback_path).to eq '/auth/twitter/callback'
+      end
+    end
+
     context "with no request params set and force_login specified" do
       before do
         allow(subject).to receive(:request) do
