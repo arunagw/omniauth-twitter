@@ -160,10 +160,11 @@ describe OmniAuth::Strategies::Twitter do
           double('Session', :[] => {})
         end
         allow(subject).to receive(:old_request_phase) { :whatever }
+        allow(subject).to receive(:old_callback_url).and_return(:old_callback)
       end
 
       it 'callback_url should return nil' do
-        expect(subject.callback_url).to be_nil
+        expect(subject.callback_url).to eq :old_callback
       end
 
       it 'should return the default callback_path value' do

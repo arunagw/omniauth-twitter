@@ -61,8 +61,14 @@ module OmniAuth
         old_request_phase
       end
 
+      alias :old_callback_url :callback_url
+
       def callback_url
-        request.params['callback_url']
+        if request.params['callback_url']
+          request.params['callback_url']
+        else
+          old_callback_url
+        end
       end
 
       def callback_path
