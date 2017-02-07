@@ -21,7 +21,7 @@ describe OmniAuth::Strategies::Twitter do
       expect(subject.options.client_options.site).to eq('https://api.twitter.com')
     end
 
-    it 'should have correct authorize url' do
+    it 'should have the correct authorize url' do
       expect(subject.options.client_options.authorize_path).to eq('/oauth/authenticate')
     end
   end
@@ -31,27 +31,27 @@ describe OmniAuth::Strategies::Twitter do
       allow(subject).to receive(:raw_info).and_return(raw_info_hash)
     end
 
-    it 'should returns the nickname' do
+    it 'should return a nickname' do
       expect(subject.info[:nickname]).to eq(raw_info_hash['screen_name'])
     end
 
-    it 'should returns the name' do
+    it 'should return a name' do
       expect(subject.info[:name]).to eq(raw_info_hash['name'])
     end
 
-    it 'should returns the email' do
+    it 'should return an email' do
       expect(subject.info[:email]).to eq(raw_info_hash['email'])
     end
 
-    it 'should returns the location' do
+    it 'should return a location' do
       expect(subject.info[:location]).to eq(raw_info_hash['location'])
     end
 
-    it 'should returns the description' do
+    it 'should return a description' do
       expect(subject.info[:description]).to eq(raw_info_hash['description'])
     end
 
-    it 'should returns the urls' do
+    it 'should return urls' do
       expect(subject.info[:urls]['Website']).to eq(raw_info_hash['url'])
       expect(subject.info[:urls]['Twitter']).to eq("https://twitter.com/#{raw_info_hash['screen_name']}")
     end
