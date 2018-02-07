@@ -130,27 +130,6 @@ describe OmniAuth::Strategies::Twitter do
       end
     end
 
-    context 'with a specified callback_url in the params' do
-      before do
-        params = { 'callback_url' => 'http://foo.dev/auth/twitter/foobar' }
-        allow(subject).to receive(:request) do
-          double('Request', :params => params)
-        end
-        allow(subject).to receive(:session) do
-          double('Session', :[] => { 'callback_url' => params['callback_url'] })
-        end
-        allow(subject).to receive(:old_request_phase) { :whatever }
-      end
-
-      it 'should use the callback_url' do
-        expect(subject.callback_url).to eq 'http://foo.dev/auth/twitter/foobar'
-      end
-
-      it 'should return the correct callback_path' do
-        expect(subject.callback_path).to eq '/auth/twitter/foobar'
-      end
-    end
-
     context 'when callback set in options' do
       before do
         @options = { :callback_url => 'http://foo.dev/auth/twitter/foobar' }
@@ -166,10 +145,6 @@ describe OmniAuth::Strategies::Twitter do
       it 'should use the callback_url' do
         expect(subject.callback_url).to eq 'http://foo.dev/auth/twitter/foobar'
       end
-
-      it 'should return the correct callback_path' do
-        expect(subject.callback_path).to eq '/auth/twitter/foobar'
-      end
     end
 
     context 'with no callback_url set' do
@@ -182,10 +157,6 @@ describe OmniAuth::Strategies::Twitter do
         end
         allow(subject).to receive(:old_request_phase) { :whatever }
         allow(subject).to receive(:old_callback_url).and_return(:old_callback)
-      end
-
-      it 'callback_url should return nil' do
-        expect(subject.callback_url).to eq :old_callback
       end
 
       it 'should return the default callback_path value' do

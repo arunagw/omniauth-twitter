@@ -62,7 +62,7 @@ module OmniAuth
       end
 
       def callback_url
-        options[:callback_url] || (full_host + script_name + callback_path)
+        options[:callback_url] || super
       end
 
       private
