@@ -46,6 +46,8 @@ Twitter supports a [few options](https://dev.twitter.com/docs/api/1/get/oauth/au
 
 The options are:
 
+* **callback_url** - This options gives a possibility to override default callback url.
+
 * **force_login** - This option sends the user to a sign-in screen to enter their Twitter credentials, even if they are already signed in. This is handy when your application supports multiple Twitter accounts and you want to ensure the correct user is signed in. *Example:* `http://yoursite.com/auth/twitter?force_login=true`
 
 * **screen_name** - This option implies **force_login**, except the screen name field is pre-filled with a particular value. *Example:* `http://yoursite.com/auth/twitter?screen_name=jim`
