@@ -61,26 +61,8 @@ module OmniAuth
         old_request_phase
       end
 
-      alias :old_callback_url :callback_url
-
       def callback_url
-        if request.params['callback_url']
-          request.params['callback_url']
-        elsif options[:callback_url]
-          options[:callback_url]
-        else
-          old_callback_url
-        end
-      end
-
-      def callback_path
-        params = session['omniauth.params']
-
-        if (params && params['callback_url']) || options[:callback_url]
-          URI(callback_url).path
-        else
-          super
-        end
+        options[:callback_url] || (full_host + script_name + callback_path)
       end
 
       private
