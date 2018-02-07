@@ -66,6 +66,8 @@ module OmniAuth
       def callback_url
         if request.params['callback_url']
           request.params['callback_url']
+        elsif options[:callback_url]
+          options[:callback_url]
         else
           old_callback_url
         end
@@ -74,10 +76,10 @@ module OmniAuth
       def callback_path
         params = session['omniauth.params']
 
-        if params.nil? || params['callback_url'].nil?
-          super
+        if (params && params['callback_url']) || options[:callback_url]
+          URI(callback_url).path
         else
-          URI(params['callback_url']).path
+          super
         end
       end
 
