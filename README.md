@@ -12,7 +12,7 @@ Twitter uses OAuth 1.0a. Twitter's developer area contains ample documentation o
 
 ## Before You Begin
 
-You should have already installed OmniAuth into your app; if not, read the [OmniAuth README](https://github.com/intridea/omniauth) to get started.
+You should have already installed OmniAuth into your app; if not, read the [OmniAuth README](https://github.com/omniauth/omniauth) to get started.
 
 Now sign in into the [Twitter developer area](https://dev.twitter.com/apps) and create an application. Take note of your API Key and API Secret (not the Access Token and Access Token Secret) because that is what your web application will use to authenticate against the Twitter API. Make sure to set a callback URL or else you may get authentication errors. (It doesn't matter what it is, just that it is set.)
 
@@ -42,7 +42,7 @@ Replace `"API_KEY"` and `"API_SECRET"` with the appropriate values you obtained 
 
 ## Authentication Options
 
-Twitter supports a [few options](https://dev.twitter.com/docs/api/1/get/oauth/authenticate) when authenticating. Usually you would specify these options as query parameters to the Twitter API authentication url (`https://api.twitter.com/oauth/authenticate` by default). With OmniAuth, of course, you use `http://yourapp.com/auth/twitter` instead. Because of this, this OmniAuth provider will pick up the query parameters you pass to the `/auth/twitter` URL and re-use them when making the call to the Twitter API.
+Twitter supports a [few options](https://dev.twitter.com/docs/api/1/get/oauth/authenticate) when authenticating. Usually you would specify these options as query parameters to the Twitter API authentication URL (`https://api.twitter.com/oauth/authenticate` by default). With OmniAuth, of course, you use `http://yourapp.com/auth/twitter` instead. Because of this, this OmniAuth provider will pick up the query parameters you pass to the `/auth/twitter` URL and re-use them when making the call to the Twitter API.
 
 The options are:
 
@@ -52,7 +52,7 @@ The options are:
 
 * **lang** - The language used in the Twitter prompt. This is useful for adding i18n support since the language of the prompt can be dynamically set for each user. *Example:* `http://yoursite.com/auth/twitter?lang=pt`
 
-* **secure_image_url** - Set to `true` to use https for the user's image url. Default is `false`.
+* **secure_image_url** - Set to `true` to use https for the user's image URL. Default is `false`.
 
 * **image_size**: This option defines the size of the user's image. Valid options include `mini` (24x24), `normal` (48x48), `bigger` (73x73) and `original` (the size of the image originally uploaded). Default is `normal`.
 
@@ -60,7 +60,7 @@ The options are:
 
 * **use_authorize** - There are actually two URLs you can use against the Twitter API. As mentioned, the default is `https://api.twitter.com/oauth/authenticate`, but you also have `https://api.twitter.com/oauth/authorize`. Passing this option as `true` will use the second URL rather than the first. What's the difference? As described [here](https://dev.twitter.com/docs/api/1/get/oauth/authenticate), with `authenticate`, if your user has already granted permission to your application, Twitter will redirect straight back to your application, whereas `authorize` forces the user to go through the "grant permission" screen again. For certain use cases this may be necessary. *Example:* `http://yoursite.com/auth/twitter?use_authorize=true`. *Note:* You must have "Allow this application to be used to Sign in with Twitter" checked in [your application's settings](https://dev.twitter.com/apps) - without it your user will be asked to authorize your application each time they log in.
 
-Here's an example of a possible configuration where the the user's original profile picture is returned over https, the user is always prompted to sign-in and the default language of the Twitter prompt is changed:
+Here's an example of a possible configuration where the user's original profile picture is returned over https, the user is always prompted to sign-in and the default language of the Twitter prompt is changed:
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
