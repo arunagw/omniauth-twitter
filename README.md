@@ -6,7 +6,7 @@
 
 This gem contains the Twitter strategy for OmniAuth.
 
-Twitter offers a few different methods of integration. This strategy implements the browser variant of the "[Sign in with Twitter](https://dev.twitter.com/docs/auth/implementing-sign-twitter)" flow.
+Twitter offers a few different methods of integration. This strategy implements the browser variant of the "[Sign in with Twitter](https://dev.twitter.com/web/sign-in/implementing)" flow.
 
 Twitter uses OAuth 1.0a. Twitter's developer area contains ample documentation on how it implements this, so check that out if you are really interested in the details.
 
