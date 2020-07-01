@@ -81,6 +81,19 @@ module OmniAuth
         end
       end
 
+      def callback_phase
+        if session["oauth"].nil? && request.params['oauth_token'] && request.params['oauth_secret']
+          session["oauth"] = {
+            'twitter' => {
+              "callback_confirmed" => true,
+              "request_token" => request.params['oauth_token'],
+              "request_secret" => request.params['oauth_secret']
+            }
+          }
+        end
+        super
+      end
+
       private
 
       def image_url
