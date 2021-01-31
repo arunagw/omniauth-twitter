@@ -64,11 +64,9 @@ module OmniAuth
       alias :old_callback_url :callback_url
 
       def callback_url
-        if request.params['callback_url']
-          request.params['callback_url']
-        else
-          old_callback_url
-        end
+        return options.redirect_url if options.redirect_url
+
+        full_host + script_name + callback_path
       end
 
       def callback_path
