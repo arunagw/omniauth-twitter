@@ -1,7 +1,6 @@
 # OmniAuth Twitter
 
 [![Gem Version](https://badge.fury.io/rb/omniauth-twitter.svg)](http://badge.fury.io/rb/omniauth-twitter)
-[![CI Build Status](https://secure.travis-ci.org/arunagw/omniauth-twitter.svg?branch=master)](http://travis-ci.org/arunagw/omniauth-twitter)
 [![Code Climate](https://codeclimate.com/github/arunagw/omniauth-twitter.png)](https://codeclimate.com/github/arunagw/omniauth-twitter)
 
 This gem contains the Twitter strategy for OmniAuth.
