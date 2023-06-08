@@ -19,8 +19,7 @@ new line in each of your commit messages:
 [ci skip]
 ```
 
-This will signal [Travis](https://travis-ci.org) that running the test suite is
-not necessary for these changes.
+This will signal [GitHub Actions](https://docs.github.com/en/actions) that running the test suite is not necessary for these changes.
 
 # Reporting Bugs
 
