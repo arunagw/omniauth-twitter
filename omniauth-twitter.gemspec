@@ -20,5 +20,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'omniauth-oauth', '~> 1.1'
   s.add_dependency 'rack'
   s.add_dependency 'cgi'
-  s.add_development_dependency 'bundler', '~> 2.0'
 end
