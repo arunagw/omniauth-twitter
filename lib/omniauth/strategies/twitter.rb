@@ -85,6 +85,8 @@ module OmniAuth
 
       def image_url
         original_url = options[:secure_image_url] ? raw_info['profile_image_url_https'] : raw_info['profile_image_url']
+        return unless original_url.present?
+        
         case options[:image_size]
         when 'mini'
           original_url.sub('normal', 'mini')
