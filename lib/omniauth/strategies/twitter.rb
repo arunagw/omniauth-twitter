@@ -92,6 +92,8 @@ module OmniAuth
           original_url.sub('normal', 'bigger')
         when 'original'
           original_url.sub('_normal', '')
+        when '400x400'
+          original_url.sub('normal', '400x400')
         else
           original_url
         end
