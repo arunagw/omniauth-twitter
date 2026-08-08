@@ -61,6 +61,12 @@ module OmniAuth
         old_request_phase
       end
 
+      def script_name
+        return if @env.nil?
+
+        super
+      end
+
       alias :old_callback_url :callback_url
 
       def callback_url
